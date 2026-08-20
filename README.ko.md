@@ -1,4 +1,4 @@
-# Swift ARC는 힙을 순회하지 않는다 — SIL에서 `strong_release`를 지워 직접 확인해봤다
+# Swift ARC는 어떻게 객체를 해제할까? SIL에서 `strong_release`를 지워 확인해봤다
 
 **언어:** [한국어](README.ko.md) · [English](README.md)
 
