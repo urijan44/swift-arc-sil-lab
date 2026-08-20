@@ -1,0 +1,8 @@
+--- MemoryGrowth.onone.sil
++++ MemoryGrowth.leaky.sil
+@@ -597,5 +597,4 @@
+   %63 = struct $Int (%62)                         // users: %64, %67
+   store %63 to %58                                // id: %64
+   end_access %58                                  // id: %65
+-  strong_release %53                              // id: %66
+   br bb3(%63)                                     // id: %67
