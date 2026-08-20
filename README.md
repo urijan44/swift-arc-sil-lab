@@ -1,5 +1,7 @@
 # Swift ARC Doesn’t Scan the Heap — I Removed `strong_release` from SIL to Prove It
 
+**Languages:** [English](README.md) · [한국어](README.ko.md)
+
 > A source-to-runtime experiment with Swift 6.3.1: inspect ownership in SIL, delete one `strong_release`, measure the resulting leak, compare weak-reference lowering, and follow the call stack into the Swift runtime.
 
 Swift ARC is sometimes explained as if it were a background service that periodically scans memory and frees objects that are no longer used. The word *Automatic* makes that story sound plausible, but it describes a tracing garbage collector more closely than Swift’s reference-counting model.
