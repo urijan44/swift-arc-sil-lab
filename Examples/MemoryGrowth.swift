@@ -5,11 +5,11 @@
 //  Created by henry.lee on 08/20/26
 //
 
-/// 매 반복마다 별도의 heap buffer를 소유해 release 유무에 따른 RSS 차이를 만든다.
+/// Owns a distinct heap buffer on every iteration to expose the RSS difference.
 final class Payload {
   let bytes: [UInt8]
 
-  /// 256 KiB 크기의 고유한 buffer를 만든다.
+  /// Creates a unique 256 KiB buffer.
   init(seed: Int) {
     self.bytes = [UInt8](
       repeating: UInt8(truncatingIfNeeded: seed),
@@ -18,13 +18,13 @@ final class Payload {
   }
 }
 
-/// Payload의 buffer를 읽어 전체 할당이 dead-code elimination 되지 않게 한다.
+/// Reads the payload buffer so the allocation cannot be eliminated as dead code.
 @inline(never)
 func consume(_ payload: Payload) -> Int {
   Int(payload.bytes[payload.bytes.count - 1])
 }
 
-/// 지역 객체를 반복 생성해 정상 release와 release 제거 실행 파일의 RSS를 비교한다.
+/// Repeatedly creates local objects to compare RSS with and without release.
 @inline(never)
 func allocatePayloads(iterations: Int) -> Int {
   var checksum = 0

@@ -5,11 +5,11 @@
 //  Created by henry.lee on 08/20/26
 //
 
-/// 객체의 생성과 소멸 시점을 콘솔에 기록한다.
+/// Logs when an object is created and destroyed.
 final class TrackedObject {
   let id: Int
 
-  /// 추적할 식별자를 저장하고 생성 이벤트를 출력한다.
+  /// Stores an identifier and prints the creation event.
   init(id: Int) {
     self.id = id
     print("init(\(id))")
@@ -20,13 +20,13 @@ final class TrackedObject {
   }
 }
 
-/// 전달받은 객체를 실제로 사용해 optimizer가 객체 사용을 제거하지 못하게 한다.
+/// Uses the object so the optimizer cannot eliminate the experiment.
 @inline(never)
 func consume(_ object: TrackedObject) {
   print("consume(\(object.id))")
 }
 
-/// 지역 strong reference의 마지막 사용 뒤 객체가 해제되는 과정을 관찰한다.
+/// Observes destruction after the lifetime of a local strong reference ends.
 @inline(never)
 func runStrongReferenceExperiment() {
   print("before scope")

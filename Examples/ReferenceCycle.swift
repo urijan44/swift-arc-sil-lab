@@ -7,12 +7,12 @@
 
 import Foundation
 
-/// 서로를 strong reference로 가리켜 순환 참조를 구성한다.
+/// Forms a reference cycle by holding another node strongly.
 final class CycleNode {
   let name: String
   var next: CycleNode?
 
-  /// 노드 이름을 저장하고 생성 이벤트를 출력한다.
+  /// Stores the node name and prints the creation event.
   init(name: String) {
     self.name = name
     print("init(\(name))")
@@ -23,7 +23,7 @@ final class CycleNode {
   }
 }
 
-/// 외부 strong reference가 사라진 뒤에도 순환 참조가 남는지 관찰한다.
+/// Observes a cycle after every external strong reference is released.
 @inline(never)
 func runReferenceCycleExperiment() {
   var first: CycleNode? = CycleNode(name: "first")

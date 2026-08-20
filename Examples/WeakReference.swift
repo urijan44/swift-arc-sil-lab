@@ -5,11 +5,11 @@
 //  Created by henry.lee on 08/20/26
 //
 
-/// weak storage가 가리킬 객체의 생명주기를 출력한다.
+/// Logs the lifetime of an object referenced through weak storage.
 final class WeakTarget {
   let id: Int
 
-  /// 추적할 식별자를 저장하고 생성 이벤트를 출력한다.
+  /// Stores an identifier and prints the creation event.
   init(id: Int) {
     self.id = id
     print("target init(\(id))")
@@ -20,17 +20,17 @@ final class WeakTarget {
   }
 }
 
-/// WeakTarget을 소유하지 않고 관찰만 한다.
+/// Observes a WeakTarget without owning it.
 final class WeakObserver {
   weak var target: WeakTarget?
 
-  /// 전달된 객체를 weak storage에 저장한다.
+  /// Stores the supplied object in weak storage.
   init(target: WeakTarget?) {
     self.target = target
   }
 }
 
-/// strong reference가 사라질 때 weak load가 nil을 반환하는지 확인한다.
+/// Verifies that a weak load returns nil after the strong reference is released.
 @inline(never)
 func runWeakReferenceExperiment() {
   var target: WeakTarget? = WeakTarget(id: 2)
